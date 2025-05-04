@@ -1,21 +1,3 @@
-// document.querySelector('button').addEventListener('click',handleClick);
-
-// function handleClick(){
-//     alert("I got clicked")
-// } 
-
-// ---------Multiple button event listener---------
-
-
-// function Audio(fileLocation){
-//     this.fileLocation = fileLocation;
-//     this.play = function(){
-
-//     }
-// }
-
-
-
 // Detecting button press
 
 var no_of_buttons = document.querySelectorAll(".drum").length;
@@ -27,14 +9,15 @@ for (var i=0; i < no_of_buttons; i++){
         var buttonInnerHTML = this.innerHTML;
 
         makeSound(buttonInnerHTML);
-});
+        buttonAnimation(buttonInnerHTML);
+    });
 }
-
 
 // Detecting Keyboard press
 
 document.addEventListener("keypress", function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
 
 });
 
@@ -78,4 +61,12 @@ function makeSound(key){
         default: console.log(buttonInnerHTML);
     }
 
+}
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("."+ currentKey);
+    activeButton.classList.add('pressed');
+    setTimeout(function(){
+        activeButton.classList.remove('pressed');
+    }, 100);
 }
